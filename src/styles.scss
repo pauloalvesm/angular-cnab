@@ -1,0 +1,94 @@
+@import "bootstrap/scss/bootstrap";
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+
+:root {
+  --white-color-1: #FFF;
+  --green-color-1: #31D931;
+  --green-color-2: #228B22;
+  --green-color-3: #31D93140;
+  --blue-color-1: #00BFFF;
+  --red-color-1: #D34343;
+  --purple-color-1: #A020F0;
+  --gray-color-1: #CFCFCF;
+  --dark-color-1: #121212;
+}
+
+body {
+  font-family: 'Roboto', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.text-green-1 {
+  color: var(--green-color-1);
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.form-control:focus {
+  border-color: var(--green-color-1);
+  box-shadow: 0 0 0 0.25rem var(--green-color-3);
+}
+
+button{
+  border: 1px solid var(--gray-color-1) !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.btn-success {
+  background-color: var(--white-color-1) !important;
+  color: var(--green-color-2) !important;
+}
+
+.btn.btn-success:hover:not(:disabled) {
+  background-color: var(--green-color-2) !important;
+  color: var(--white-color-1) !important;
+}
+
+.btn.btn-success:active {
+  background-color: var(--green-color-2) !important;
+  opacity: 0.8;
+}
+
+.btn-success:disabled {
+  background-color: var(--gray-color-1) !important;
+  border-color: var(--gray-color-1) !important;
+  color: var(--white-color-1) !important;
+  opacity: 0.6;
+}
+
+.btn-primary {
+  background-color: var(--white-color-1) !important;
+  color: var(--blue-color-1) !important;
+  border-color: var(--blue-color-1) !important;
+}
+
+.btn.btn-primary:hover:not(:disabled) {
+  background-color: var(--blue-color-1) !important;
+  color: var(--white-color-1) !important;
+}
+
+.btn-danger {
+  background-color: var(--white-color-1) !important;
+  color: var(--red-color-1) !important;
+  border-color: var(--red-color-1) !important;
+}
+
+.btn.btn-danger:hover:not(:disabled) {
+  background-color: var(--red-color-1) !important;
+  color: var(--white-color-1) !important;
+}
+
+.btn-dark {
+  background-color: var(--white-color-1) !important;
+  color: var(--dark-color-1) !important;
+  border-color: var(--dark-color-1) !important;
+}
+
+.btn.btn-dark:hover:not(:disabled) {
+  background-color: var(--dark-color-1) !important;
+  color: var(--white-color-1) !important;
+}
