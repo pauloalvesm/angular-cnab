@@ -11,6 +11,22 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'cnab',
+    loadChildren: () => import('./modules/cnab/cnab.module').then(m => m.CnabModule)
+  },
+  {
+    path: 'stores',
+    loadChildren: () => import('./modules/store/store.module').then(m => m.StoreModule)
+  },
+  {
+    path: 'transactions',
+    loadChildren: () => import('./modules/transaction/transaction.module').then(m => m.TransactionModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'home'
   }
 ];
 
