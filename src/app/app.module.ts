@@ -4,6 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeModule } from './modules/home/home.module';
+import { CnabModule } from './modules/cnab/cnab.module';
+import { StoreModule } from './modules/store/store.module';
+import { TransactionModule } from './modules/transaction/transaction.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +15,10 @@ import { HomeModule } from './modules/home/home.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
+    CnabModule,
+    StoreModule,
+    TransactionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
