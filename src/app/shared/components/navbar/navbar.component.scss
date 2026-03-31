@@ -1,0 +1,40 @@
+.navbar {
+  background-color: var(--dark-color-1) !important;
+  padding: 0.8rem 0;
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    color: var(--green-color-1);
+  }
+
+  .nav-link {
+    color: var(--gray-color-1);
+    font-weight: 400;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    border-bottom: 3px solid transparent;
+
+    &:hover {
+      color: var(--white-color-1);
+    }
+
+    &.active {
+      color: var(--white-color-1) !important;
+      border-bottom: 3px solid var(--green-color-1);
+    }
+
+    i {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.navbar-toggler {
+    border-color: var(--green-color-3);
+    &:focus {
+        box-shadow: 0 0 0 0.25rem var(--green-color-3);
+    }
+}
