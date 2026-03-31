@@ -7,6 +7,7 @@ import { HomeModule } from './modules/home/home.module';
 import { CnabModule } from './modules/cnab/cnab.module';
 import { StoreModule } from './modules/store/store.module';
 import { TransactionModule } from './modules/transaction/transaction.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TransactionModule } from './modules/transaction/transaction.module';
     HomeModule,
     CnabModule,
     StoreModule,
-    TransactionModule
+    TransactionModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
