@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center fw-bold text-green-1" routerLink="/home">
+      <i class="bi bi-cash-stack me-2"></i>
+      CNAB
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="bi bi-house-door me-1"></i> Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/stores" routerLinkActive="active">
+            <i class="bi bi-shop me-1"></i> Store
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/transactions" routerLinkActive="active">
+            <i class="bi bi-list-check me-1"></i> Transaction
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/cnab" routerLinkActive="active">
+            <i class="bi bi-file-earmark-arrow-up me-1"></i> Upload CNAB
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
