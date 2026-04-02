@@ -8,6 +8,7 @@ import { CnabModule } from './modules/cnab/cnab.module';
 import { StoreModule } from './modules/store/store.module';
 import { TransactionModule } from './modules/transaction/transaction.module';
 import { SharedModule } from './shared/shared.module';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { SharedModule } from './shared/shared.module';
     TransactionModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    provideHttpClient()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
