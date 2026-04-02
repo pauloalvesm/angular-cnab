@@ -1,1 +1,64 @@
-<p>transaction-list works!</p>
+<div class="container mt-5">
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-white py-3">
+      <h2 class="mb-0 page-title">Transaction</h2>
+    </div>
+
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle mb-0">
+          <thead class="table-dark">
+            <tr>
+              <th class="ps-4">Type</th>
+              <th>Date/Time</th>
+              <th>Amount</th>
+              <th>CPF</th>
+              <th>Card</th>
+              <th>Store</th>
+              <th class="text-center" style="width: 150px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="isLoading">
+              <td colspan="7" class="text-center py-5">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p class="mt-2 mb-0">Loading data...</p>
+              </td>
+            </tr>
+
+            <tr *ngFor="let transaction of transactions">
+              <td class="ps-4">{{ getTransactionTypeName(transaction.type) }}</td>
+              <td>{{ transaction.occurrenceDate | date:'dd/MM/yyyy' }} {{ transaction.time }}</td>
+              <td>{{ transaction.amount | currency:'BRL' }}</td>
+              <td>{{ transaction.cpf }}</td>
+              <td>{{ transaction.cardNumber }}</td>
+              <td>{{ transaction.storeName }}</td>
+              <td class="text-center">
+                <div class="d-flex justify-content-center gap-2">
+                  <button type="button"
+                          class="btn btn-outline-primary btn-sm"
+                          (click)="onEdit(transaction)"
+                          title="Edit Record">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button type="button"
+                          class="btn btn-outline-danger btn-sm"
+                          (click)="onDelete(transaction)"
+                          title="Delete Record">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <tr *ngIf="!isLoading && transactions.length === 0">
+              <td colspan="7" class="text-center py-4 text-muted">
+                No records found for this query.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,5 +9,7 @@ export interface Transaction {
   cpf: string;
   cardNumber: string;
   time: string;
-  store: Store;
+  storeId: string;
+  storeName: string;
+  storeOwnerName: string;
 }
