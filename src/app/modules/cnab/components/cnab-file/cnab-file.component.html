@@ -1,1 +1,57 @@
-<p>cnab-file works!</p>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-white py-3">
+          <h2 class="mb-0 page-title">Import CNAB File</h2>
+        </div>
+
+        <div class="card-body p-4">
+          <div class="mb-4 text-center">
+            <p class="text-muted small">Select the transaction .txt file for processing.</p>
+
+            <input
+              type="file"
+              #fileInput
+              class="d-none"
+              accept=".txt"
+              (change)="onFileSelected($event)">
+
+            <div class="input-group">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="fileInput.click()"
+                [disabled]="isLoading">
+                Choose File
+              </button>
+              <span class="form-control text-muted text-start bg-light overflow-hidden"
+                    style="border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem; text-overflow: ellipsis; white-space: nowrap;">
+                {{ selectedFile ? selectedFile.name : 'No file chosen' }}
+              </span>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button
+              type="button"
+              class="btn btn-success btn-lg"
+              (click)="onUpload()"
+              [disabled]="!selectedFile || isLoading"
+            >
+              <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+              {{ isLoading ? 'Processing...' : 'Upload and Process' }}
+            </button>
+          </div>
+
+          <div *ngIf="uploadMessage"
+               class="mt-4 alert text-center py-2"
+               [ngClass]="isError ? 'alert-danger' : 'alert-success'"
+               style="font-size: 0.85rem;">
+            {{ uploadMessage }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
