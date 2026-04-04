@@ -12,11 +12,22 @@ import { TransactionType } from '../../../../core/models/enums/transaction-type.
 export class TransactionListComponent implements OnInit {
   public transactions: Transaction[] = [];
   public isLoading = false;
+  public currentPage: number = 1;
+  public itemsPerPage: number = 5;
 
   constructor(private transactionService: TransactionService) {}
 
   ngOnInit(): void {
     this.loadTransactions();
+  }
+
+  get paginatedTransactions(): Transaction[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.transactions.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
   }
 
   getTransactionTypeName(type: number): string {
@@ -28,7 +39,13 @@ export class TransactionListComponent implements OnInit {
 
     this.transactionService.getAllTransactions().subscribe({
       next: (data) => {
-        this.transactions = data;
+        this.transactions = data.sort((a, b) => {
+        const dateA = new Date(`${a.occurrenceDate}T${a.time}`);
+        const dateB = new Date(`${b.occurrenceDate}T${b.time}`);
+        return dateB.getTime() - dateA.getTime();
+      });
+
+        this.currentPage = 1;
         this.isLoading = false;
       },
       error: (err) => {

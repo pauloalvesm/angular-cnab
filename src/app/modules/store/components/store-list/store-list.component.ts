@@ -11,6 +11,8 @@ import { StoreService } from '../../services/store/store.service';
 export class StoreListComponent implements OnInit {
   public stores: Store[] = [];
   public isLoading = false;
+  public currentPage: number = 1;
+  public itemsPerPage: number = 5;
 
   constructor(private storeService: StoreService) {}
 
@@ -18,12 +20,22 @@ export class StoreListComponent implements OnInit {
     this.loadStores();
   }
 
+  get paginatedStores(): Store[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.stores.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+  }
+
   loadStores(): void {
     this.isLoading = true;
 
     this.storeService.getAllStores().subscribe({
       next: (data) => {
-        this.stores = data;
+        this.stores = data.sort((a, b) => a.name.localeCompare(b.name));
+        this.currentPage = 1;
         this.isLoading = false;
       },
       error: (err) => {

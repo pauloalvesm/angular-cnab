@@ -22,7 +22,7 @@
               </td>
             </tr>
 
-            <tr *ngFor="let store of stores">
+            <tr *ngFor="let store of paginatedStores">
               <td class="ps-4">{{ store.name }}</td>
               <td>{{ store.ownerName }}</td>
               <td class="text-center">
@@ -52,5 +52,15 @@
         </table>
       </div>
     </div>
+
+    <div class="card-footer bg-white border-0 pb-4">
+      <app-pagination
+        [currentPage]="currentPage"
+        [totalItems]="stores.length"
+        [itemsPerPage]="itemsPerPage"
+        (pageChanged)="onPageChange($event)">
+      </app-pagination>
+    </div>
+
   </div>
 </div>

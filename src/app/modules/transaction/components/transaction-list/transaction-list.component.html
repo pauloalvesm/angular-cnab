@@ -10,7 +10,7 @@
           <thead class="table-dark">
             <tr>
               <th class="ps-4">Type</th>
-              <th>Date/Time</th>
+              <th>Date</th>
               <th>Amount</th>
               <th>CPF</th>
               <th>Card</th>
@@ -26,7 +26,7 @@
               </td>
             </tr>
 
-            <tr *ngFor="let transaction of transactions">
+            <tr *ngFor="let transaction of paginatedTransactions">
               <td class="ps-4">{{ getTransactionTypeName(transaction.type) }}</td>
               <td>{{ transaction.occurrenceDate | date:'dd/MM/yyyy' }} {{ transaction.time }}</td>
               <td>{{ transaction.amount | currency:'BRL' }}</td>
@@ -60,5 +60,15 @@
         </table>
       </div>
     </div>
+
+    <div class="card-footer bg-white border-0 pb-4">
+        <app-pagination
+          [currentPage]="currentPage"
+          [totalItems]="transactions.length"
+          [itemsPerPage]="itemsPerPage"
+          (pageChanged)="onPageChange($event)">
+        </app-pagination>
+    </div>
+
   </div>
 </div>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 import { TRANSACTION_ROUTES } from './routes/transaction.routing';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -10,8 +11,9 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(TRANSACTION_ROUTES)
-  ],
+    RouterModule.forChild(TRANSACTION_ROUTES),
+    SharedModule
+],
   exports: [
     TransactionListComponent
   ]
