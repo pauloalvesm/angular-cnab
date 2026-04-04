@@ -111,6 +111,11 @@ button{
   }
 }
 
+.search-container {
+  width: 100%;
+  max-width: 350px;
+}
+
 @media (max-width: 768px) {
   .table {
     font-size: 0.75rem;

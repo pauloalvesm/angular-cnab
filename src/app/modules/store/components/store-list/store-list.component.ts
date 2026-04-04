@@ -13,6 +13,7 @@ export class StoreListComponent implements OnInit {
   public isLoading = false;
   public currentPage: number = 1;
   public itemsPerPage: number = 5;
+  public searchTerm: string = '';
 
   constructor(private storeService: StoreService) {}
 
@@ -20,9 +21,25 @@ export class StoreListComponent implements OnInit {
     this.loadStores();
   }
 
+  get filteredStores(): Store[] {
+    if (!this.searchTerm) {
+      return this.stores;
+    }
+
+    const term = this.searchTerm.toLowerCase();
+    return this.stores.filter(s =>
+      s.name.toLowerCase().includes(term) ||
+      s.ownerName.toLowerCase().includes(term)
+    );
+  }
+
   get paginatedStores(): Store[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.stores.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.filteredStores.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  onSearchChange(): void {
+    this.currentPage = 1;
   }
 
   onPageChange(page: number): void {

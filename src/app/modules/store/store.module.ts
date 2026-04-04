@@ -4,6 +4,7 @@ import { StoreListComponent } from './components/store-list/store-list.component
 import { STORE_ROUTES } from './routes/store.routing';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from "../../shared/shared.module";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { SharedModule } from "../../shared/shared.module";
   imports: [
     CommonModule,
     RouterModule.forChild(STORE_ROUTES),
-    SharedModule
+    SharedModule,
+    FormsModule
 ],
   exports: [
     StoreListComponent

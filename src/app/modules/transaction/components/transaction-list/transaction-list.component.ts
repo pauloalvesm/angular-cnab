@@ -14,6 +14,7 @@ export class TransactionListComponent implements OnInit {
   public isLoading = false;
   public currentPage: number = 1;
   public itemsPerPage: number = 5;
+  public searchTerm: string = '';
 
   constructor(private transactionService: TransactionService) {}
 
@@ -21,9 +22,25 @@ export class TransactionListComponent implements OnInit {
     this.loadTransactions();
   }
 
+  get filteredTransactions(): Transaction[] {
+    if (!this.searchTerm) {
+      return this.transactions;
+    }
+
+    const term = this.searchTerm.toLowerCase();
+    return this.transactions.filter(t =>
+      t.cpf.toLowerCase().includes(term) ||
+      t.storeName.toLowerCase().includes(term)
+    );
+  }
+
   get paginatedTransactions(): Transaction[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.transactions.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.filteredTransactions.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  onSearchChange(): void {
+    this.currentPage = 1;
   }
 
   onPageChange(page: number): void {

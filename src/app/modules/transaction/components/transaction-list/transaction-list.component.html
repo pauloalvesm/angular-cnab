@@ -1,7 +1,24 @@
-<div class="container mt-5">
+<div class="container mt-2">
   <div class="card shadow-sm border-0">
-    <div class="card-header bg-white py-3">
-      <h2 class="mb-0 page-title">Transaction</h2>
+
+    <div class="card-header bg-white py-3 px-0">
+      <h2 class="mb-2 page-title fw-bold ps-3">Transaction</h2>
+
+      <div class="d-flex justify-content-start">
+        <div class="search-container">
+          <div class="input-group shadow-sm">
+            <span class="input-group-text bg-white border-end-0">
+              <i class="bi bi-search text-muted"></i>
+            </span>
+            <input
+              type="text"
+              class="form-control border-start-0 ps-0"
+              placeholder="Search by CPF or Store..."
+              [(ngModel)]="searchTerm"
+              (input)="onSearchChange()">
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="card-body p-0">
@@ -35,25 +52,19 @@
               <td>{{ transaction.storeName }}</td>
               <td class="text-center">
                 <div class="d-flex justify-content-center gap-2">
-                  <button type="button"
-                          class="btn btn-outline-primary btn-sm"
-                          (click)="onEdit(transaction)"
-                          title="Edit Record">
+                  <button type="button" class="btn btn-outline-primary btn-sm" (click)="onEdit(transaction)">
                     <i class="bi bi-pencil"></i>
                   </button>
-                  <button type="button"
-                          class="btn btn-outline-danger btn-sm"
-                          (click)="onDelete(transaction)"
-                          title="Delete Record">
+                  <button type="button" class="btn btn-outline-danger btn-sm" (click)="onDelete(transaction)">
                     <i class="bi bi-trash"></i>
                   </button>
                 </div>
               </td>
             </tr>
 
-            <tr *ngIf="!isLoading && transactions.length === 0">
+            <tr *ngIf="!isLoading && filteredTransactions.length === 0">
               <td colspan="7" class="text-center py-4 text-muted">
-                No records found for this query.
+                No records found {{ searchTerm ? 'for "' + searchTerm + '"' : '' }}.
               </td>
             </tr>
           </tbody>
@@ -64,7 +75,7 @@
     <div class="card-footer bg-white border-0 pb-4">
         <app-pagination
           [currentPage]="currentPage"
-          [totalItems]="transactions.length"
+          [totalItems]="filteredTransactions.length"
           [itemsPerPage]="itemsPerPage"
           (pageChanged)="onPageChange($event)">
         </app-pagination>
