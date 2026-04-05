@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '../../../../core/models/interfaces/store.model';
 import { StoreService } from '../../services/store/store.service';
+import { Utility } from '../../../../shared/utils/utility';
 
 @Component({
   selector: 'app-store-list',
@@ -15,10 +16,17 @@ export class StoreListComponent implements OnInit {
   public itemsPerPage: number = 5;
   public searchTerm: string = '';
 
-  constructor(private storeService: StoreService) {}
+  constructor(
+    private storeService: StoreService,
+    public utility: Utility
+  ) {}
 
   ngOnInit(): void {
     this.loadStores();
+  }
+
+  onClearFilters(): void {
+    this.utility.cleanSearchField(this, 'searchTerm');
   }
 
   get filteredStores(): Store[] {

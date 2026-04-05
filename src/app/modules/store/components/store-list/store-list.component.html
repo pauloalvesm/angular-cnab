@@ -16,6 +16,14 @@
               placeholder="Search by Name or Owner..."
               [(ngModel)]="searchTerm"
               (input)="onSearchChange()">
+
+            <button
+              class="btn btn-outline-danger border-start-0"
+              type="button"
+              title="Clear filters and reset pagination"
+              (click)="onClearFilters()">
+              <i class="bi bi-x-lg"></i>
+            </button>
           </div>
         </div>
       </div>

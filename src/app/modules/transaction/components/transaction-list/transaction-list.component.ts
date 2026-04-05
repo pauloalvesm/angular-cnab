@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Transaction } from '../../../../core/models/interfaces/transaction.model';
 import { TransactionService } from '../../services/transaction/transaction.service';
 import { TransactionType } from '../../../../core/models/enums/transaction-type.enum';
+import { Utility } from '../../../../shared/utils/utility';
 
 @Component({
   selector: 'app-transaction-list',
@@ -16,10 +17,17 @@ export class TransactionListComponent implements OnInit {
   public itemsPerPage: number = 5;
   public searchTerm: string = '';
 
-  constructor(private transactionService: TransactionService) {}
+  constructor(
+    private transactionService: TransactionService,
+    public utility: Utility
+  ) {}
 
   ngOnInit(): void {
     this.loadTransactions();
+  }
+
+  onClearFilters(): void {
+    this.utility.cleanSearchField(this, 'searchTerm');
   }
 
   get filteredTransactions(): Transaction[] {
