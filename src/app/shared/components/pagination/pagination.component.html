@@ -1,0 +1,33 @@
+<nav *ngIf="totalPages > 1" aria-label="Page navigation" class="d-flex justify-content-center mt-4">
+  <ul class="pagination shadow-sm">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <button class="page-link" (click)="changePage(1)" title="First Page">
+        <i class="bi bi-chevron-double-left"></i>
+      </button>
+    </li>
+
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <button class="page-link" (click)="changePage(currentPage - 1)" title="Previous">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+    </li>
+
+    <li class="page-item disabled">
+      <span class="page-link text-pagination fw-bold">
+        Page {{ currentPage }} of {{ totalPages }}
+      </span>
+    </li>
+
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <button class="page-link" (click)="changePage(currentPage + 1)" title="Next">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </li>
+
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <button class="page-link" (click)="changePage(totalPages)" title="Last Page">
+        <i class="bi bi-chevron-double-right"></i>
+      </button>
+    </li>
+  </ul>
+</nav>

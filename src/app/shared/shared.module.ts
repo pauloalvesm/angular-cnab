@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    HeaderComponent
+    HeaderComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -15,7 +17,8 @@ import { HeaderComponent } from './components/header/header.component';
   ],
   exports: [
     NavbarComponent,
-    HeaderComponent
+    HeaderComponent,
+    PaginationComponent
   ]
 })
 export class SharedModule { }
