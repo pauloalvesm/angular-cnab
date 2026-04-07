@@ -4,12 +4,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     HeaderComponent,
-    PaginationComponent
+    PaginationComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
   exports: [
     NavbarComponent,
     HeaderComponent,
-    PaginationComponent
+    PaginationComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }
