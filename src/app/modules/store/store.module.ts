@@ -4,20 +4,24 @@ import { StoreListComponent } from './components/store-list/store-list.component
 import { STORE_ROUTES } from './routes/store.routing';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from "../../shared/shared.module";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreCreateComponent } from './components/store-create/store-create.component';
 
 @NgModule({
   declarations: [
-    StoreListComponent
+    StoreListComponent,
+    StoreCreateComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(STORE_ROUTES),
     SharedModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 ],
   exports: [
-    StoreListComponent
+    StoreListComponent,
+    StoreCreateComponent
   ]
 })
 export class StoreModule { }

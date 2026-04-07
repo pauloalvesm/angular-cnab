@@ -1,0 +1,41 @@
+<div class="modal fade" id="storeCreateModal" tabindex="-1" aria-labelledby="storeCreateModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="storeCreateModalLabel">
+          <i class="bi bi-shop me-2"></i>New Store
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form [formGroup]="storeForm" (ngSubmit)="saveStore()">
+        <div class="modal-body p-4">
+          <div class="mb-3">
+            <label class="form-label fw-bold text-secondary">Store Name</label>
+            <input type="text" class="form-control" formControlName="name" placeholder="Enter store name">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold text-secondary">Owner Name</label>
+            <input type="text" class="form-control" formControlName="ownerName" placeholder="Enter owner name">
+          </div>
+        </div>
+
+        <div class="modal-footer bg-light border-0">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal" (click)="onClear()">
+            <i class="bi bi-x-circle me-1"></i> Cancel
+          </button>
+
+          <button type="button" class="btn btn-danger" (click)="onClear()" [disabled]="isSaving">
+            <i class="bi bi-eraser me-1"></i> Clear
+          </button>
+
+          <button type="submit" class="btn btn-success px-4" [disabled]="storeForm.invalid || isSaving">
+            <span *ngIf="isSaving" class="spinner-border spinner-border-sm me-1"></span>
+            <i *ngIf="!isSaving" class="bi bi-floppy me-1"></i> Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
