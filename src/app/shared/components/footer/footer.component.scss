@@ -1,17 +1,14 @@
 .footer {
-  // Mesma cor de fundo do Navbar
   background-color: var(--dark-color-1) !important;
-  border-top: 1px solid var(--green-color-3); // Linha sutil no topo
+  border-top: 1px solid var(--green-color-3);
 
   .brand-text {
-    // Mesma cor verde do Navbar-brand
     color: var(--green-color-1);
     font-size: 1rem;
     letter-spacing: 0.5px;
   }
 
   .year-text {
-    // Cor cinza suave para o copyright
     color: var(--gray-color-1);
     font-size: 0.9rem;
   }
