@@ -63,9 +63,15 @@
               <td>{{ store.ownerName }}</td>
               <td class="text-center">
                 <div class="d-flex justify-content-center gap-2">
-                  <button type="button" class="btn btn-outline-primary btn-sm" (click)="onEdit(store)" title="Edit Record">
-                    <i class="bi bi-pencil"></i>
+                  <button
+                    class="btn btn-primary btn-sm"
+                    title="Edit"
+                    data-bs-toggle="modal"
+                    data-bs-target="#storeUpdateModal"
+                    (click)="prepareEdit(store)">
+                    <i class="bi bi-pencil-square"></i>
                   </button>
+
                   <button type="button" class="btn btn-outline-danger btn-sm" (click)="onDelete(store)" title="Delete Record">
                     <i class="bi bi-trash"></i>
                   </button>
@@ -96,3 +102,4 @@
 </div>
 
 <app-store-create (storeCreated)="loadStores()"></app-store-create>
+<app-store-update (storeUpdated)="loadStores()"></app-store-update>

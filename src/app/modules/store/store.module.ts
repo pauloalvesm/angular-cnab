@@ -6,11 +6,13 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from "../../shared/shared.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreCreateComponent } from './components/store-create/store-create.component';
+import { StoreUpdateComponent } from './components/store-update/store-update.component';
 
 @NgModule({
   declarations: [
     StoreListComponent,
-    StoreCreateComponent
+    StoreCreateComponent,
+    StoreUpdateComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { StoreCreateComponent } from './components/store-create/store-create.com
 ],
   exports: [
     StoreListComponent,
-    StoreCreateComponent
+    StoreCreateComponent,
+    StoreUpdateComponent
   ]
 })
 export class StoreModule { }

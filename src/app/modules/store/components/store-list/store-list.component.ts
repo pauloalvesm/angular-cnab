@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '../../../../core/models/interfaces/store.model';
 import { StoreService } from '../../services/store/store.service';
 import { Utility } from '../../../../shared/utils/utility';
+import { StoreUpdateComponent } from '../store-update/store-update.component';
 
 @Component({
   selector: 'app-store-list',
@@ -15,6 +16,8 @@ export class StoreListComponent implements OnInit {
   public currentPage: number = 1;
   public itemsPerPage: number = 5;
   public searchTerm: string = '';
+
+  @ViewChild(StoreUpdateComponent) updateModal!: StoreUpdateComponent;
 
   constructor(
     private storeService: StoreService,
@@ -70,8 +73,8 @@ export class StoreListComponent implements OnInit {
     });
   }
 
-  onEdit(store: Store): void {
-    console.log('Starting store edit:', store.name);
+  public prepareEdit(store: Store): void {
+    this.updateModal.setStore(store);
   }
 
   onDelete(store: Store): void {

@@ -1,0 +1,38 @@
+<div class="modal fade" id="storeUpdateModal" tabindex="-1" aria-labelledby="storeUpdateModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header modal-title-update">
+        <h5 class="modal-title" id="storeUpdateModalLabel">
+          <i class="bi bi-pencil-square me-2"></i>Update Store
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" (click)="onClear()"></button>
+      </div>
+
+      <form [formGroup]="storeForm" (ngSubmit)="updateStore()">
+        <div class="modal-body p-4">
+          <div class="mb-3">
+            <label class="form-label fw-bold text-secondary">Store Name</label>
+            <input type="text" class="form-control" formControlName="name" placeholder="Enter store name">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold text-secondary">Owner Name</label>
+            <input type="text" class="form-control" formControlName="ownerName" placeholder="Enter owner name">
+          </div>
+        </div>
+
+        <div class="modal-footer bg-light border-0">
+
+          <button #closeBtn type="button" class="btn btn-dark" title="Cancel" data-bs-dismiss="modal" (click)="onClear()">
+            <i class="bi bi-x-circle me-1"></i> Cancel
+          </button>
+
+          <button type="submit" class="btn btn-primary px-4" title="Update" [disabled]="storeForm.invalid || isSaving">
+            <span *ngIf="isSaving" class="spinner-border spinner-border-sm me-1"></span>
+            <i *ngIf="!isSaving" class="bi bi-floppy me-1"></i> Update
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
