@@ -7,12 +7,14 @@ import { SharedModule } from "../../shared/shared.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreCreateComponent } from './components/store-create/store-create.component';
 import { StoreUpdateComponent } from './components/store-update/store-update.component';
+import { StoreDeleteComponent } from './components/store-delete/store-delete.component';
 
 @NgModule({
   declarations: [
     StoreListComponent,
     StoreCreateComponent,
-    StoreUpdateComponent
+    StoreUpdateComponent,
+    StoreDeleteComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { StoreUpdateComponent } from './components/store-update/store-update.com
   exports: [
     StoreListComponent,
     StoreCreateComponent,
-    StoreUpdateComponent
+    StoreUpdateComponent,
+    StoreDeleteComponent
   ]
 })
 export class StoreModule { }

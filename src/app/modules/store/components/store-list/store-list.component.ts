@@ -3,6 +3,7 @@ import { Store } from '../../../../core/models/interfaces/store.model';
 import { StoreService } from '../../services/store/store.service';
 import { Utility } from '../../../../shared/utils/utility';
 import { StoreUpdateComponent } from '../store-update/store-update.component';
+import { StoreDeleteComponent } from '../store-delete/store-delete.component';
 
 @Component({
   selector: 'app-store-list',
@@ -18,6 +19,7 @@ export class StoreListComponent implements OnInit {
   public searchTerm: string = '';
 
   @ViewChild(StoreUpdateComponent) updateModal!: StoreUpdateComponent;
+  @ViewChild(StoreDeleteComponent) deleteModal!: StoreDeleteComponent;
 
   constructor(
     private storeService: StoreService,
@@ -77,7 +79,7 @@ export class StoreListComponent implements OnInit {
     this.updateModal.setStore(store);
   }
 
-  onDelete(store: Store): void {
-    console.log('Starting store deletion:', store.name);
+  public prepareDelete(store: Store): void {
+    this.deleteModal.setStore(store);
   }
 }
