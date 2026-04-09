@@ -64,6 +64,15 @@
               <td class="text-center">
                 <div class="d-flex justify-content-center gap-2">
                   <button
+                    class="btn btn-outline-dark btn-sm"
+                    title="Details"
+                    data-bs-toggle="modal"
+                    data-bs-target="#storeDetailsModal"
+                    (click)="prepareDetails(store.id)">
+                    <i class="bi bi-eye"></i>
+                  </button>
+
+                  <button
                     class="btn btn-primary btn-sm"
                     title="Edit"
                     data-bs-toggle="modal"
@@ -107,6 +116,7 @@
   </div>
 </div>
 
+<app-store-details></app-store-details>
 <app-store-create (storeCreated)="loadStores()"></app-store-create>
 <app-store-update (storeUpdated)="loadStores()"></app-store-update>
 <app-store-delete (storeDeleted)="loadStores()"></app-store-delete>

@@ -4,6 +4,7 @@ import { StoreService } from '../../services/store/store.service';
 import { Utility } from '../../../../shared/utils/utility';
 import { StoreUpdateComponent } from '../store-update/store-update.component';
 import { StoreDeleteComponent } from '../store-delete/store-delete.component';
+import { StoreDetailsComponent } from '../store-details/store-details.component';
 
 @Component({
   selector: 'app-store-list',
@@ -18,6 +19,7 @@ export class StoreListComponent implements OnInit {
   public itemsPerPage: number = 5;
   public searchTerm: string = '';
 
+  @ViewChild(StoreDetailsComponent) detailsModal!: StoreDetailsComponent;
   @ViewChild(StoreUpdateComponent) updateModal!: StoreUpdateComponent;
   @ViewChild(StoreDeleteComponent) deleteModal!: StoreDeleteComponent;
 
@@ -73,6 +75,10 @@ export class StoreListComponent implements OnInit {
         this.isLoading = false;
       },
     });
+  }
+
+  public prepareDetails(id: string): void {
+    this.detailsModal.setStoreId(id);
   }
 
   public prepareEdit(store: Store): void {

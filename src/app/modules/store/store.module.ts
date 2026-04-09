@@ -8,13 +8,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreCreateComponent } from './components/store-create/store-create.component';
 import { StoreUpdateComponent } from './components/store-update/store-update.component';
 import { StoreDeleteComponent } from './components/store-delete/store-delete.component';
+import { StoreDetailsComponent } from './components/store-details/store-details.component';
 
 @NgModule({
   declarations: [
     StoreListComponent,
     StoreCreateComponent,
     StoreUpdateComponent,
-    StoreDeleteComponent
+    StoreDeleteComponent,
+    StoreDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { StoreDeleteComponent } from './components/store-delete/store-delete.com
     StoreListComponent,
     StoreCreateComponent,
     StoreUpdateComponent,
-    StoreDeleteComponent
+    StoreDeleteComponent,
+    StoreDetailsComponent
   ]
 })
 export class StoreModule { }
