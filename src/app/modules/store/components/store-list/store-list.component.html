@@ -8,9 +8,10 @@
         <span class="text-secondary small me-3 fw-normal">
           <i class="bi bi-question-circle me-1"></i>Need to register a new store?
         </span>
-        <button class="btn btn-primary btn-sm d-flex align-items-center shadow-sm"
+        <button class="btn btn-success btn-sm d-flex align-items-center shadow-sm"
                 data-bs-toggle="modal"
-                data-bs-target="#storeCreateModal">
+                data-bs-target="#storeCreateModal"
+                title="Add Store">
           <i class="bi bi-plus-lg me-1"></i> Add Store
         </button>
       </div>
@@ -34,6 +35,7 @@
               title="Clear filters and reset pagination"
               (click)="onClearFilters()">
               <i class="bi bi-x-lg"></i>
+              Clear
             </button>
           </div>
         </div>
