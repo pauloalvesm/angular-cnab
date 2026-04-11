@@ -103,6 +103,15 @@ button{
   text-align: center;
 }
 
+.details-page {
+  color: var(--blue-color-1);
+  font-weight: 700;
+}
+
+.modal-label {
+  color: var(--blue-color-1);
+}
+
 .table {
   font-size: 0.9rem;
 
@@ -113,6 +122,11 @@ button{
   td {
     vertical-align: middle;
   }
+}
+
+.modal-title-update {
+  color: var(--white-color-1);
+  background-color: var(--blue-color-1);
 }
 
 .search-container {

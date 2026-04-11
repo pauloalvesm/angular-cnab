@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '../../../../core/models/interfaces/store.model';
 import { StoreService } from '../../services/store/store.service';
 import { Utility } from '../../../../shared/utils/utility';
+import { StoreUpdateComponent } from '../store-update/store-update.component';
+import { StoreDeleteComponent } from '../store-delete/store-delete.component';
+import { StoreDetailsComponent } from '../store-details/store-details.component';
 
 @Component({
   selector: 'app-store-list',
@@ -15,6 +18,10 @@ export class StoreListComponent implements OnInit {
   public currentPage: number = 1;
   public itemsPerPage: number = 5;
   public searchTerm: string = '';
+
+  @ViewChild(StoreDetailsComponent) detailsModal!: StoreDetailsComponent;
+  @ViewChild(StoreUpdateComponent) updateModal!: StoreUpdateComponent;
+  @ViewChild(StoreDeleteComponent) deleteModal!: StoreDeleteComponent;
 
   constructor(
     private storeService: StoreService,
@@ -70,11 +77,15 @@ export class StoreListComponent implements OnInit {
     });
   }
 
-  onEdit(store: Store): void {
-    console.log('Starting store edit:', store.name);
+  public prepareDetails(id: string): void {
+    this.detailsModal.setStoreId(id);
   }
 
-  onDelete(store: Store): void {
-    console.log('Starting store deletion:', store.name);
+  public prepareEdit(store: Store): void {
+    this.updateModal.setStore(store);
+  }
+
+  public prepareDelete(store: Store): void {
+    this.deleteModal.setStore(store);
   }
 }
