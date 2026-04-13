@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Transaction } from '../../../../core/models/interfaces/transaction.model';
 import { TransactionService } from '../../services/transaction/transaction.service';
 import { TransactionType } from '../../../../core/models/enums/transaction-type.enum';
 import { Utility } from '../../../../shared/utils/utility';
+import { TransactionUpdateComponent } from '../transaction-update/transaction-update.component';
 
 @Component({
   selector: 'app-transaction-list',
@@ -21,6 +22,8 @@ export class TransactionListComponent implements OnInit {
     private transactionService: TransactionService,
     public utility: Utility
   ) {}
+
+  @ViewChild(TransactionUpdateComponent) updateModal!: TransactionUpdateComponent;
 
   ngOnInit(): void {
     this.loadTransactions();
@@ -80,8 +83,8 @@ export class TransactionListComponent implements OnInit {
     });
   }
 
-  onEdit(transaction: Transaction): void {
-    console.log('Starting transaction edit:', transaction.id);
+  public prepareEdit(transaction: Transaction): void {
+    this.updateModal.setTransaction(transaction);
   }
 
   onDelete(transaction: Transaction): void {

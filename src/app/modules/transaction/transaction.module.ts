@@ -6,11 +6,13 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from "../../shared/shared.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TransactionCreateComponent } from './components/transaction-create/transaction-create.component';
+import { TransactionUpdateComponent } from './components/transaction-update/transaction-update.component';
 
 @NgModule({
   declarations: [
     TransactionListComponent,
-    TransactionCreateComponent
+    TransactionCreateComponent,
+    TransactionUpdateComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { TransactionCreateComponent } from './components/transaction-create/tran
 ],
   exports: [
     TransactionListComponent,
-    TransactionCreateComponent
+    TransactionCreateComponent,
+    TransactionUpdateComponent
   ]
 })
 export class TransactionModule { }

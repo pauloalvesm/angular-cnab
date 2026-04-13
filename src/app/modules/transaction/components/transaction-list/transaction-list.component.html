@@ -73,9 +73,16 @@
               <td>{{ transaction.storeName }}</td>
               <td class="text-center">
                 <div class="d-flex justify-content-center gap-2">
-                  <button type="button" class="btn btn-outline-primary btn-sm" (click)="onEdit(transaction)">
-                    <i class="bi bi-pencil"></i>
+
+                  <button type="button"
+                          class="btn btn-primary btn-sm"
+                          title="Edit"
+                          data-bs-toggle="modal"
+                          data-bs-target="#transactionUpdateModal"
+                          (click)="prepareEdit(transaction)">
+                    <i class="bi bi-pencil-square"></i>
                   </button>
+
                   <button type="button" class="btn btn-outline-danger btn-sm" (click)="onDelete(transaction)">
                     <i class="bi bi-trash"></i>
                   </button>
@@ -106,3 +113,4 @@
 </div>
 
 <app-transaction-create (transactionCreated)="loadTransactions()"></app-transaction-create>
+<app-transaction-update (transactionUpdated)="loadTransactions()"></app-transaction-update>
