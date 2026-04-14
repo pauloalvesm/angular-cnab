@@ -7,12 +7,14 @@ import { SharedModule } from "../../shared/shared.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TransactionCreateComponent } from './components/transaction-create/transaction-create.component';
 import { TransactionUpdateComponent } from './components/transaction-update/transaction-update.component';
+import { TransactionDeleteComponent } from './components/transaction-delete/transaction-delete.component';
 
 @NgModule({
   declarations: [
     TransactionListComponent,
     TransactionCreateComponent,
-    TransactionUpdateComponent
+    TransactionUpdateComponent,
+    TransactionDeleteComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { TransactionUpdateComponent } from './components/transaction-update/tran
   exports: [
     TransactionListComponent,
     TransactionCreateComponent,
-    TransactionUpdateComponent
+    TransactionUpdateComponent,
+    TransactionDeleteComponent
   ]
 })
 export class TransactionModule { }

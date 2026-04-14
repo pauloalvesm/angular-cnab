@@ -4,6 +4,7 @@ import { TransactionService } from '../../services/transaction/transaction.servi
 import { TransactionType } from '../../../../core/models/enums/transaction-type.enum';
 import { Utility } from '../../../../shared/utils/utility';
 import { TransactionUpdateComponent } from '../transaction-update/transaction-update.component';
+import { TransactionDeleteComponent } from '../transaction-delete/transaction-delete.component';
 
 @Component({
   selector: 'app-transaction-list',
@@ -24,6 +25,7 @@ export class TransactionListComponent implements OnInit {
   ) {}
 
   @ViewChild(TransactionUpdateComponent) updateModal!: TransactionUpdateComponent;
+  @ViewChild(TransactionDeleteComponent) deleteModal!: TransactionDeleteComponent;
 
   ngOnInit(): void {
     this.loadTransactions();
@@ -87,7 +89,8 @@ export class TransactionListComponent implements OnInit {
     this.updateModal.setTransaction(transaction);
   }
 
-  onDelete(transaction: Transaction): void {
-    console.log('Starting transaction deletion:', transaction.id);
+  public prepareDelete(transaction: Transaction): void {
+    this.deleteModal.setTransaction(transaction);
   }
+
 }
