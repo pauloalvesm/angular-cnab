@@ -9,6 +9,7 @@ import { StoreModule } from './modules/store/store.module';
 import { TransactionModule } from './modules/transaction/transaction.module';
 import { SharedModule } from './shared/shared.module';
 import { provideHttpClient } from '@angular/common/http';
+import { AreaModule } from './modules/area/area.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { provideHttpClient } from '@angular/common/http';
     CnabModule,
     StoreModule,
     TransactionModule,
-    SharedModule
+    SharedModule,
+    AreaModule
   ],
   providers: [
     provideHttpClient()
