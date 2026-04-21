@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Transaction } from '../../../../core/models/interfaces/transaction.model';
 import { TransactionService } from '../../services/transaction/transaction.service';
 import { TransactionType } from '../../../../core/models/enums/transaction-type.enum';
 import { Utility } from '../../../../shared/utils/utility';
+import { TransactionUpdateComponent } from '../transaction-update/transaction-update.component';
+import { TransactionDeleteComponent } from '../transaction-delete/transaction-delete.component';
+import { TransactionDetailsComponent } from '../transaction-details/transaction-details.component';
 
 @Component({
   selector: 'app-transaction-list',
@@ -21,6 +24,10 @@ export class TransactionListComponent implements OnInit {
     private transactionService: TransactionService,
     public utility: Utility
   ) {}
+
+  @ViewChild(TransactionDetailsComponent) detailsModal!: TransactionDetailsComponent;
+  @ViewChild(TransactionUpdateComponent) updateModal!: TransactionUpdateComponent;
+  @ViewChild(TransactionDeleteComponent) deleteModal!: TransactionDeleteComponent;
 
   ngOnInit(): void {
     this.loadTransactions();
@@ -80,11 +87,16 @@ export class TransactionListComponent implements OnInit {
     });
   }
 
-  onEdit(transaction: Transaction): void {
-    console.log('Starting transaction edit:', transaction.id);
+  public prepareEdit(transaction: Transaction): void {
+    this.updateModal.setTransaction(transaction);
   }
 
-  onDelete(transaction: Transaction): void {
-    console.log('Starting transaction deletion:', transaction.id);
+  public prepareDelete(transaction: Transaction): void {
+    this.deleteModal.setTransaction(transaction);
   }
+
+  public prepareDetails(id: string): void {
+    this.detailsModal.setTransactionId(id);
+  }
+
 }

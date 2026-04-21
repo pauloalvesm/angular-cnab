@@ -1,0 +1,97 @@
+<div class="modal fade" id="transactionCreateModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">
+          <i class="bi bi-plus-circle me-2"></i>Add New Transaction
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body p-4">
+
+          <div class="mb-3">
+            <label class="form-label fw-bold modal-label">Transaction Type</label>
+            <select class="form-select" formControlName="type">
+              <option value="" disabled selected>Select a type...</option>
+              <option value="1">Debit</option>
+              <option value="2">Boleto</option>
+              <option value="3">Financing</option>
+              <option value="4">Credit</option>
+              <option value="5">Loan Receipt</option>
+              <option value="6">Sales</option>
+              <option value="7">TED Receipt</option>
+              <option value="8">DOC Receipt</option>
+              <option value="9">Rent</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold modal-label">Amount (Value)</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light">R$</span>
+                <input type="number" class="form-control" formControlName="amount" placeholder="0.00">
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold modal-label">Card Number</label>
+              <input type="text" class="form-control" formControlName="cardNumber"
+                    placeholder="0000 0000 0000 0000"
+                    (input)="transactionForm.patchValue({cardNumber: utility.formatCard($any($event.target).value)})">
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold modal-label">CPF (Taxpayer ID)</label>
+              <input type="text" class="form-control" formControlName="cpf"
+                    placeholder="000.000.000-00"
+                    (input)="transactionForm.patchValue({cpf: utility.formatCpf($any($event.target).value)})">
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold modal-label">Occurrence Date</label>
+              <input type="date" class="form-control" formControlName="occurrenceDate">
+            </div>
+          </div>
+
+          <div class="mb-0">
+            <label class="form-label fw-bold modal-label">Target Store</label>
+            <select class="form-select" formControlName="storeId">
+              <option value="" disabled selected>Assign to a store...</option>
+              <option *ngFor="let store of stores" [value]="store.id">
+                {{ store.name }}
+              </option>
+            </select>
+            <small class="text-danger" *ngIf="stores.length === 0">
+              No stores found. Please register a store first.
+            </small>
+          </div>
+
+        </div>
+
+        <div class="modal-footer bg-light border-0">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal" title="Cancel">
+            <i class="bi bi-x-circle me-1"></i> Cancel
+          </button>
+
+          <button type="button" class="btn btn-danger" (click)="onClear()" title="Clear" [disabled]="isSaving">
+            <i class="bi bi-eraser me-1"></i> Clear
+          </button>
+
+          <button type="submit" class="btn btn-success" [disabled]="transactionForm.invalid || isLoading" title="Save">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-1"></span>
+            <i *ngIf="!isLoading" class="bi bi-check2-circle me-1"></i>
+            Save
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

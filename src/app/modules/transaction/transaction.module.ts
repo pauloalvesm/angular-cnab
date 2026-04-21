@@ -4,20 +4,33 @@ import { TransactionListComponent } from './components/transaction-list/transact
 import { TRANSACTION_ROUTES } from './routes/transaction.routing';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from "../../shared/shared.module";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TransactionCreateComponent } from './components/transaction-create/transaction-create.component';
+import { TransactionUpdateComponent } from './components/transaction-update/transaction-update.component';
+import { TransactionDeleteComponent } from './components/transaction-delete/transaction-delete.component';
+import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component';
 
 @NgModule({
   declarations: [
-    TransactionListComponent
+    TransactionListComponent,
+    TransactionCreateComponent,
+    TransactionUpdateComponent,
+    TransactionDeleteComponent,
+    TransactionDetailsComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(TRANSACTION_ROUTES),
     SharedModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 ],
   exports: [
-    TransactionListComponent
+    TransactionListComponent,
+    TransactionCreateComponent,
+    TransactionUpdateComponent,
+    TransactionDeleteComponent,
+    TransactionDetailsComponent
   ]
 })
 export class TransactionModule { }
