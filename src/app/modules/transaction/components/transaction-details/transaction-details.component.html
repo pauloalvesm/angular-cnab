@@ -1,0 +1,64 @@
+<div class="modal fade" id="transactionDetailsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title">
+          <i class="bi bi- receipt me-2"></i>Transaction Details
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body p-4">
+        <div *ngIf="isLoading" class="text-center py-5">
+          <div class="spinner-border text-primary" role="status"></div>
+          <p class="mt-2 mb-0 text-muted">Fetching transaction data...</p>
+        </div>
+
+        <div *ngIf="!isLoading && transaction">
+          <div class="mb-4 text-center">
+             <i class="bi bi-info-circle text-green-1 fs-1"></i>
+             <h4 class="details-page fw-bold mt-2">{{ transaction.storeName }}</h4>
+          </div>
+
+          <div class="card bg-light border-0">
+            <div class="card-body">
+              <div class="row g-3">
+                <div class="col-6">
+                  <label class="small text-muted d-block fw-bold"><span class="modal-label">Type</span></label>
+                  <span>{{ getTransactionTypeName(transaction.type) }}</span>
+                </div>
+                <div class="col-6">
+                  <label class="small text-muted d-block fw-bold"><span class="modal-label">Amount</span></label>
+                  <span class="fw-bold">{{ transaction.amount | currency:'BRL' }}</span>
+                </div>
+                <div class="col-6">
+                  <label class="small text-muted d-block fw-bold"><span class="modal-label">Date</span></label>
+                  <span>{{ transaction.occurrenceDate | date:'dd/MM/yyyy' }}</span>
+                </div>
+                <div class="col-6">
+                  <label class="small text-muted d-block fw-bold"><span class="modal-label">Time</span></label>
+                  <span>{{ transaction.time }}</span>
+                </div>
+                <div class="col-12 border-top pt-2">
+                  <label class="small text-muted d-block fw-bold"><span class="modal-label">Card Holder CPF</span></label>
+                  <span>{{ transaction.cpf }}</span>
+                </div>
+                <div class="col-12">
+                  <label class="small text-muted d-block fw-bold"><span class="modal-label">Card Number</span></label>
+                  <span>{{ transaction.cardNumber }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer bg-light border-0">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal" title="Close">
+          <i class="bi bi-x-circle me-1"></i> Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

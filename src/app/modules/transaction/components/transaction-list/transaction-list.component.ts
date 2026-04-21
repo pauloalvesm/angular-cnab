@@ -5,6 +5,7 @@ import { TransactionType } from '../../../../core/models/enums/transaction-type.
 import { Utility } from '../../../../shared/utils/utility';
 import { TransactionUpdateComponent } from '../transaction-update/transaction-update.component';
 import { TransactionDeleteComponent } from '../transaction-delete/transaction-delete.component';
+import { TransactionDetailsComponent } from '../transaction-details/transaction-details.component';
 
 @Component({
   selector: 'app-transaction-list',
@@ -24,6 +25,7 @@ export class TransactionListComponent implements OnInit {
     public utility: Utility
   ) {}
 
+  @ViewChild(TransactionDetailsComponent) detailsModal!: TransactionDetailsComponent;
   @ViewChild(TransactionUpdateComponent) updateModal!: TransactionUpdateComponent;
   @ViewChild(TransactionDeleteComponent) deleteModal!: TransactionDeleteComponent;
 
@@ -91,6 +93,10 @@ export class TransactionListComponent implements OnInit {
 
   public prepareDelete(transaction: Transaction): void {
     this.deleteModal.setTransaction(transaction);
+  }
+
+  public prepareDetails(id: string): void {
+    this.detailsModal.setTransactionId(id);
   }
 
 }

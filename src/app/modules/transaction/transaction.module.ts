@@ -8,13 +8,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TransactionCreateComponent } from './components/transaction-create/transaction-create.component';
 import { TransactionUpdateComponent } from './components/transaction-update/transaction-update.component';
 import { TransactionDeleteComponent } from './components/transaction-delete/transaction-delete.component';
+import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component';
 
 @NgModule({
   declarations: [
     TransactionListComponent,
     TransactionCreateComponent,
     TransactionUpdateComponent,
-    TransactionDeleteComponent
+    TransactionDeleteComponent,
+    TransactionDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { TransactionDeleteComponent } from './components/transaction-delete/tran
     TransactionListComponent,
     TransactionCreateComponent,
     TransactionUpdateComponent,
-    TransactionDeleteComponent
+    TransactionDeleteComponent,
+    TransactionDetailsComponent
   ]
 })
 export class TransactionModule { }

@@ -75,6 +75,15 @@
                 <div class="d-flex justify-content-center gap-2">
 
                   <button type="button"
+                          class="btn btn-outline-dark btn-sm"
+                          title="Details"
+                          data-bs-toggle="modal"
+                          data-bs-target="#transactionDetailsModal"
+                          (click)="prepareDetails(transaction.id)">
+                    <i class="bi bi-eye"></i>
+                  </button>
+
+                  <button type="button"
                           class="btn btn-primary btn-sm"
                           title="Edit"
                           data-bs-toggle="modal"
@@ -118,6 +127,7 @@
   </div>
 </div>
 
+<app-transaction-details></app-transaction-details>
 <app-transaction-create (transactionCreated)="loadTransactions()"></app-transaction-create>
 <app-transaction-update (transactionUpdated)="loadTransactions()"></app-transaction-update>
 <app-transaction-delete (transactionDeleted)="loadTransactions()"></app-transaction-delete>
