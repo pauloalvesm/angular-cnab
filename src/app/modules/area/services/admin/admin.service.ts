@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AdminService {
-  private readonly apiUrl = `${environment.apiUrl}/Admin`;
+  private readonly apiUrl = `${environment.apiUrl}/api/Admin`;
 
   constructor(private http: HttpClient) {}
 

@@ -8,28 +8,37 @@
 
   <div class="row g-3 mb-4">
     <div class="col-md-4">
-        <div class="card shadow-sm border-0 bg-light p-3 text-center">
-          <small class="text-muted fw-bold">METRIC CARDS COMING SOON</small>
-        </div>
+      <div class="card shadow-sm border-0 bg-white p-3">
+        <small class="text-muted fw-bold d-block mb-1">TOTAL BALANCE</small>
+        <h4 class="fw-bold text-success mb-0">{{ totalBalance | currency:'BRL' }}</h4>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 bg-white p-3">
+        <small class="text-muted fw-bold d-block mb-1">ACTIVE STORES</small>
+        <h4 class="fw-bold text-info mb-0">{{ storeCount }}</h4>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 bg-white p-3">
+        <small class="text-muted fw-bold d-block mb-1">TOTAL TRANSACTIONS</small>
+        <h4 class="fw-bold text-primary mb-0">{{ transactionCount }}</h4>
+      </div>
     </div>
   </div>
 
   <div class="row g-4">
-    <div class="col-md-8">
-      <div class="card shadow-sm border-0 p-4">
-        <h5 class="fw-bold mb-3 details-page">Transactions Overview</h5>
-        <div class="chart-placeholder text-center py-5 bg-light rounded">
-          <p class="text-muted">Placeholder for Bar/Line Chart</p>
-        </div>
-      </div>
-    </div>
-
     <div class="col-md-4">
       <div class="card shadow-sm border-0 p-4">
         <h5 class="fw-bold mb-3 details-page">Store Distribution</h5>
-        <div class="chart-placeholder text-center py-5 bg-light rounded">
-          <p class="text-muted">Placeholder for Doughnut/Pie Chart</p>
-        </div>
+        <app-store-distribution-chart></app-store-distribution-chart>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="card shadow-sm border-0 p-4">
+        <h5 class="fw-bold mb-3 details-page">Transactions Overview</h5>
+        <app-transaction-chart></app-transaction-chart>
       </div>
     </div>
   </div>
