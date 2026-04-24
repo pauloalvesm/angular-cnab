@@ -25,6 +25,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/transaction/transaction.module').then(m => m.TransactionModule)
   },
   {
+    path: 'dashboard', 
+    loadChildren: () => import('./modules/area/area.module').then(m => m.AreaModule)
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
