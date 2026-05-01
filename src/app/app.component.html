@@ -1,12 +1,10 @@
 <div class="d-flex flex-column h-100">
-
-  <app-navbar></app-navbar>
-  <app-header></app-header>
+  <app-navbar *ngIf="authService.isLoggedIn() && !isLoginPage"></app-navbar>
+  <app-header *ngIf="authService.isLoggedIn() && !isLoginPage"></app-header>
 
   <main class="flex-fill container">
     <router-outlet></router-outlet>
   </main>
 
-  <app-footer></app-footer>
-
+  <app-footer *ngIf="authService.isLoggedIn() && !isLoginPage"></app-footer>
 </div>
