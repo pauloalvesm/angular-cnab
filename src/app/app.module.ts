@@ -8,8 +8,10 @@ import { CnabModule } from './modules/cnab/cnab.module';
 import { StoreModule } from './modules/store/store.module';
 import { TransactionModule } from './modules/transaction/transaction.module';
 import { SharedModule } from './shared/shared.module';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AreaModule } from './modules/area/area.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { TokenInterceptor } from './modules/auth/interceptors/token-interceptor';
 
 @NgModule({
   declarations: [
@@ -23,10 +25,18 @@ import { AreaModule } from './modules/area/area.module';
     StoreModule,
     TransactionModule,
     SharedModule,
-    AreaModule
+    AreaModule,
+    AuthModule
   ],
   providers: [
-    provideHttpClient()
+    provideHttpClient(
+      withInterceptorsFromDi()
+    ),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

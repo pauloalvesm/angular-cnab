@@ -1,0 +1,62 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg border-0" style="width: 100%; max-width: 400px;">
+    <div class="card-body p-5 text-center">
+
+      <div class="mb-4">
+        <i class="bi bi-shield-lock-fill text-green-1 display-4"></i>
+        <h2 class="fw-bold mt-2">Sign In</h2>
+        <p class="text-muted">Enter your credentials to access CNAB</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-floating mb-3 text-start">
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            placeholder="User or Email"
+            formControlName="email">
+          <label for="email">User / Email</label>
+        </div>
+
+        <div class="form-floating mb-4 text-start">
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+            formControlName="password">
+          <label for="password">Password</label>
+        </div>
+
+        <button
+          class="btn btn-success w-100 py-2 shadow-sm"
+          type="submit"
+          [disabled]="loginForm.invalid">
+          <i class="bi bi-box-arrow-in-right me-2"></i>Login
+        </button>
+
+        <div class="mt-2">
+          <button
+            type="button"
+            class="btn btn-danger w-100 py-2 shadow-sm"
+            (click)="onClear()">
+            <i class="bi bi-trash me-2"></i>Clear Fields
+          </button>
+        </div>
+
+      </form>
+
+      <div class="mt-4 small text-muted">
+        Don't have an account?
+        <a (click)="sendEmail()"
+          class="text-decoration-none text-green-1 fw-bold"
+          style="cursor: pointer;">
+          Contact Admin
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
