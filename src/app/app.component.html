@@ -6,5 +6,7 @@
     <router-outlet></router-outlet>
   </main>
 
+  <app-register *ngIf="authService.isAdmin()"></app-register>
+
   <app-footer *ngIf="authService.isLoggedIn() && !isLoginPage"></app-footer>
 </div>

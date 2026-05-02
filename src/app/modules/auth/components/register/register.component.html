@@ -1,0 +1,78 @@
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg custom-modal">
+      <div class="modal-body p-5 text-center">
+
+        <div class="mb-4">
+          <button
+             type="button"
+             class="btn-close float-end"
+             (click)="closeModal()"
+             data-bs-dismiss="modal"
+             aria-label="Close">
+          </button>
+          <i class="bi bi-person-plus-fill text-green-1 display-4"></i>
+          <h2 class="fw-bold mt-2">User Registration</h2>
+          <p class="text-muted">Register a new user to the system</p>
+        </div>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-floating mb-3 text-start">
+            <input
+              type="email"
+              class="form-control"
+              id="regEmail"
+              placeholder="User Email"
+              formControlName="email">
+            <label for="regEmail">User Email</label>
+          </div>
+
+          <div class="form-floating mb-3 text-start">
+            <input
+              type="password"
+              class="form-control"
+              id="regPassword"
+              placeholder="Password"
+              formControlName="password">
+            <label for="regPassword">Password</label>
+          </div>
+
+          <div class="form-floating mb-4 text-start">
+            <input
+              type="password"
+              class="form-control"
+              id="regConfirmPassword"
+              placeholder="Confirm Password"
+              formControlName="confirmPassword">
+            <label for="regConfirmPassword">Confirm Password</label>
+          </div>
+
+          <button
+            class="btn btn-success w-100 py-2 shadow-sm"
+            type="submit"
+            [disabled]="registerForm.invalid">
+            <i class="bi bi-check-circle me-2"></i>Register User
+          </button>
+
+          <div class="mt-2">
+            <button
+              type="button"
+              class="btn btn-danger w-100 py-2 shadow-sm"
+              (click)="onClear()">
+              <i class="bi bi-trash me-2"></i>Clear Fields
+            </button>
+          </div>
+
+        </form>
+
+        <div class="mt-2">
+          <button type="button" class="btn btn-dark w-100 py-2 shadow-sm" (click)="closeModal()">
+            Cancel
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
