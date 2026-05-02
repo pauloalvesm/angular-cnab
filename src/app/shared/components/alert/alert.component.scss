@@ -1,0 +1,9 @@
+.alert-container {
+  z-index: 1060;
+  transition: all 0.3s ease-in-out;
+
+  .alert {
+    min-width: 300px;
+    border-radius: 8px;
+  }
+}

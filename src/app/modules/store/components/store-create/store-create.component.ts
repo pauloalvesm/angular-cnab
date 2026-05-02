@@ -1,7 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StoreService } from '../../services/store/store.service';
 import { Utility } from '../../../../shared/utils/utility';
+import { AlertService } from '../../../../shared/services/alert/alert.service';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-store-create',
@@ -12,6 +15,8 @@ import { Utility } from '../../../../shared/utils/utility';
 export class StoreCreateComponent {
   storeForm: FormGroup;
   isSaving = false;
+
+  private alertService = inject(AlertService);
 
   @Output() storeCreated = new EventEmitter<void>();
 
@@ -32,13 +37,16 @@ export class StoreCreateComponent {
     this.isSaving = true;
     this.storeService.addStore(this.storeForm.value).subscribe({
       next: () => {
+        this.isSaving = false;
+        this.closeModal();
         this.onClear();
         this.storeCreated.emit();
-        this.isSaving = false;
+        this.alertService.showAlert('success', 'Store created successfully!');
       },
       error: (err) => {
-        console.error('Error creating store:', err);
         this.isSaving = false;
+        console.error('Error creating store:', err);
+        this.alertService.showAlert('danger', 'Failed to create store. Please check the data.');
       },
     });
   }
@@ -46,4 +54,13 @@ export class StoreCreateComponent {
   public onClear(): void {
     this.utility.cleanForm(this.storeForm);
   }
+
+  public closeModal(): void {
+    const modalElement = document.getElementById('storeCreateModal');
+    if (modalElement) {
+      const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+      modalInstance.hide();
+    }
+  }
+
 }
