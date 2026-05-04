@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { Store } from '../../../../core/models/interfaces/store.model';
 import { StoreService } from '../../services/store/store.service';
 import { Utility } from '../../../../shared/utils/utility';
 import { StoreUpdateComponent } from '../store-update/store-update.component';
 import { StoreDeleteComponent } from '../store-delete/store-delete.component';
 import { StoreDetailsComponent } from '../store-details/store-details.component';
+import { AlertService } from '../../../../shared/services/alert/alert.service';
 
 @Component({
   selector: 'app-store-list',
@@ -18,6 +19,8 @@ export class StoreListComponent implements OnInit {
   public currentPage: number = 1;
   public itemsPerPage: number = 5;
   public searchTerm: string = '';
+
+  private alertService = inject(AlertService);
 
   @ViewChild(StoreDetailsComponent) detailsModal!: StoreDetailsComponent;
   @ViewChild(StoreUpdateComponent) updateModal!: StoreUpdateComponent;
@@ -73,6 +76,11 @@ export class StoreListComponent implements OnInit {
       error: (err) => {
         console.error('Error fetching CNAB records:', err);
         this.isLoading = false;
+
+        this.alertService.showAlert(
+          'danger',
+          'Error loading store list. Please refresh the page.'
+        );
       },
     });
   }
