@@ -1,9 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TransactionService } from '../../services/transaction/transaction.service';
 import { StoreService } from '../../../store/services/store/store.service';
 import { Store } from '../../../../core/models/interfaces/store.model';
 import { Utility } from '../../../../shared/utils/utility';
+import { AlertService } from '../../../../shared/services/alert/alert.service';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-transaction-create',
@@ -17,6 +20,8 @@ export class TransactionCreateComponent implements OnInit {
   public isLoading = false;
   isSaving = false;
   public stores: Store[] = [];
+
+  private alertService = inject(AlertService);
 
   constructor(
     private fb: FormBuilder,
@@ -43,7 +48,10 @@ export class TransactionCreateComponent implements OnInit {
       next: (data) => {
         this.stores = data.sort((a, b) => a.name.localeCompare(b.name));
       },
-      error: (err) => console.error('Error loading stores for modal:', err),
+      error: (err) => {
+        console.error('Error loading stores for modal:', err);
+        this.alertService.showAlert('danger', 'Failed to load stores for transaction.');
+      },
     });
   }
 
@@ -68,13 +76,16 @@ export class TransactionCreateComponent implements OnInit {
 
     this.transactionService.addTransaction(payload).subscribe({
       next: () => {
+        this.isLoading = false;
+        this.closeModal();
         this.transactionCreated.emit();
         this.onClear();
-        this.isLoading = false;
+        this.alertService.showAlert('success', 'Transaction created successfully!');
       },
       error: (err) => {
         console.error('Final attempt failed:', err.error);
         this.isLoading = false;
+        this.alertService.showAlert('danger', 'Failed to save transaction. Please check the data.');
       },
     });
   }
@@ -82,4 +93,13 @@ export class TransactionCreateComponent implements OnInit {
   public onClear(): void {
     this.utility.cleanForm(this.transactionForm);
   }
+
+  public closeModal(): void {
+    const modalElement = document.getElementById('transactionCreateModal');
+    if (modalElement) {
+      const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+      modalInstance.hide();
+    }
+  }
+
 }
