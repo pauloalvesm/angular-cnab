@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Transaction } from '../../../../core/models/interfaces/transaction.model';
 import { TransactionService } from '../../services/transaction/transaction.service';
 import { TransactionType } from '../../../../core/models/enums/transaction-type.enum';
+import { AlertService } from '../../../../shared/services/alert/alert.service';
 
 @Component({
   selector: 'app-transaction-details',
@@ -12,6 +13,8 @@ import { TransactionType } from '../../../../core/models/enums/transaction-type.
 export class TransactionDetailsComponent {
   public transaction?: Transaction;
   public isLoading = false;
+
+  private alertService = inject(AlertService);
 
   constructor(private transactionService: TransactionService) {}
 
@@ -29,6 +32,11 @@ export class TransactionDetailsComponent {
       error: (err) => {
         console.error('Error fetching transaction details:', err);
         this.isLoading = false;
+        
+        this.alertService.showAlert(
+          'danger',
+          'Failed to load transaction details. Please try again.'
+        );
       },
     });
   }
