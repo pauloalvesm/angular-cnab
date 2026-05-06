@@ -2,6 +2,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  inject,
   OnInit,
   Output,
   ViewChild,
@@ -11,6 +12,9 @@ import { Store } from '../../../../core/models/interfaces/store.model';
 import { TransactionService } from '../../services/transaction/transaction.service';
 import { StoreService } from '../../../store/services/store/store.service';
 import { Utility } from '../../../../shared/utils/utility';
+import { AlertService } from '../../../../shared/services/alert/alert.service';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-transaction-update',
@@ -24,6 +28,8 @@ export class TransactionUpdateComponent implements OnInit {
   public isSaving = false;
   public stores: Store[] = [];
   private currentTransactionId: string | null = null;
+
+  private alertService = inject(AlertService);
 
   @Output() transactionUpdated = new EventEmitter<void>();
   @ViewChild('closeBtn') closeBtn!: ElementRef;
@@ -53,8 +59,10 @@ export class TransactionUpdateComponent implements OnInit {
       next: (data) => {
         this.stores = data.sort((a, b) => a.name.localeCompare(b.name));
       },
-      error: (err) =>
-        console.error('Error loading stores for update modal:', err),
+      error: (err) => {
+        console.error('Error loading stores for update modal:', err);
+        this.alertService.showAlert('danger', 'Failed to load stores for update.');
+      },
     });
   }
 
@@ -94,13 +102,15 @@ export class TransactionUpdateComponent implements OnInit {
       .updateTransaction(this.currentTransactionId, payload)
       .subscribe({
         next: () => {
-          this.transactionUpdated.emit();
           this.isSaving = false;
-          this.closeBtn.nativeElement.click();
+          this.closeModal();
+          this.transactionUpdated.emit();
+          this.alertService.showAlert('success', 'Transaction updated successfully!');
         },
         error: (err) => {
           console.error('Error updating transaction:', err);
           this.isSaving = false;
+          this.alertService.showAlert('danger', 'Failed to update transaction. Please check the fields.');
         },
       });
   }
@@ -108,4 +118,15 @@ export class TransactionUpdateComponent implements OnInit {
   public onClear(): void {
     this.utility.cleanForm(this.transactionForm);
   }
+
+  public closeModal(): void {
+    const modalElement = document.getElementById('transactionUpdateModal');
+    if (modalElement) {
+      const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+      modalInstance.hide();
+    } else {
+      this.closeBtn.nativeElement.click();
+    }
+  }
+
 }
