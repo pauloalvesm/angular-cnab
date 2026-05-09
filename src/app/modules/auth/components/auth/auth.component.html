@@ -33,6 +33,7 @@
         <button
           class="btn btn-success w-100 py-2 shadow-sm"
           type="submit"
+          title="Login"
           [disabled]="loginForm.invalid">
           <i class="bi bi-box-arrow-in-right me-2"></i>Login
         </button>
@@ -40,6 +41,7 @@
         <div class="mt-2">
           <button
             type="button"
+            title="Clear Fields"
             class="btn btn-danger w-100 py-2 shadow-sm"
             (click)="onClear()">
             <i class="bi bi-trash me-2"></i>Clear Fields

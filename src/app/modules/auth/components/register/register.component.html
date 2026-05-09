@@ -51,6 +51,7 @@
           <button
             class="btn btn-success w-100 py-2 shadow-sm"
             type="submit"
+            title="Register User"
             [disabled]="registerForm.invalid">
             <i class="bi bi-check-circle me-2"></i>Register User
           </button>
@@ -58,6 +59,7 @@
           <div class="mt-2">
             <button
               type="button"
+              title="Clear Fields"
               class="btn btn-danger w-100 py-2 shadow-sm"
               (click)="onClear()">
               <i class="bi bi-trash me-2"></i>Clear Fields
@@ -67,7 +69,11 @@
         </form>
 
         <div class="mt-2">
-          <button type="button" class="btn btn-dark w-100 py-2 shadow-sm" (click)="closeModal()">
+          <button
+            type="button"
+            title="Cancel"
+            class="btn btn-dark w-100 py-2 shadow-sm"
+            (click)="closeModal()">
             Cancel
           </button>
         </div>
