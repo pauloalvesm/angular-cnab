@@ -1,7 +1,10 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StoreService } from '../../services/store/store.service';
 import { Utility } from '../../../../shared/utils/utility';
+import { AlertService } from '../../../../shared/services/alert/alert.service';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-store-update',
@@ -13,6 +16,8 @@ export class StoreUpdateComponent {
   storeForm: FormGroup;
   isSaving = false;
   currentStoreId: string | null = null;
+
+  private alertService = inject(AlertService);
 
   @Output() storeUpdated = new EventEmitter<void>();
   @ViewChild('closeBtn') closeBtn!: ElementRef;
@@ -50,13 +55,15 @@ export class StoreUpdateComponent {
       .updateStore(this.currentStoreId, storeToUpdate)
       .subscribe({
         next: () => {
-          this.storeUpdated.emit();
           this.isSaving = false;
-          this.closeBtn.nativeElement.click();
+          this.closeModal();
+          this.storeUpdated.emit();
+          this.alertService.showAlert('success', 'Store updated successfully!');
         },
         error: (err) => {
-          console.error('Error updating store:', err);
           this.isSaving = false;
+          console.error('Error updating store:', err);
+          this.alertService.showAlert('danger', 'Failed to update store. Please check the data.');
         },
       });
   }
@@ -64,4 +71,15 @@ export class StoreUpdateComponent {
   public onClear(): void {
     this.utility.cleanForm(this.storeForm);
   }
+
+  public closeModal(): void {
+    const modalElement = document.getElementById('storeUpdateModal');
+    if (modalElement) {
+      const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+      modalInstance.hide();
+    } else {
+      this.closeBtn.nativeElement.click();
+    }
+  }
+
 }

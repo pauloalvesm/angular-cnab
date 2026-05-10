@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Store } from '../../../../core/models/interfaces/store.model';
 import { StoreService } from '../../services/store/store.service';
+import { AlertService } from '../../../../shared/services/alert/alert.service';
 
 @Component({
   selector: 'app-store-details',
@@ -11,6 +12,8 @@ import { StoreService } from '../../services/store/store.service';
 export class StoreDetailsComponent {
   public store?: Store;
   public isLoading = false;
+
+  private alertService = inject(AlertService);
 
   constructor(private storeService: StoreService) {}
 
@@ -24,6 +27,11 @@ export class StoreDetailsComponent {
       error: (err) => {
         console.error('Error fetching store details:', err);
         this.isLoading = false;
+
+        this.alertService.showAlert(
+          'danger',
+          'Failed to load store details. Please try again later.'
+        );
       },
     });
   }

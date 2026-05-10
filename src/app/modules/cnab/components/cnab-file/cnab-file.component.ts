@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CnabService } from '../../services/cnab/cnab.service';
+import { AlertService } from '../../../../shared/services/alert/alert.service';
 
 @Component({
   selector: 'app-cnab-file',
@@ -12,6 +13,8 @@ export class CnabFileComponent {
   public isLoading = false;
   public uploadMessage = '';
   public isError = false;
+
+  private alertService = inject(AlertService);
 
   constructor(private cnabService: CnabService) {}
 
@@ -36,13 +39,18 @@ export class CnabFileComponent {
         this.isLoading = false;
         this.isError = false;
         this.uploadMessage = `Success! ${res.totalProcessed} transactions processed.`;
+        this.alertService.showAlert('success', 'CNAB file processed successfully!');
         this.selectedFile = null;
+
+        const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+        if (fileInput) fileInput.value = '';
       },
       error: (err) => {
         this.isLoading = false;
         this.isError = true;
-        this.uploadMessage =
-          err.error?.message || 'Error processing the CNAB file.';
+        this.uploadMessage = err.error?.message || 'Error processing the CNAB file.';
+        this.alertService.showAlert('danger', 'Failed to upload CNAB file.');
+
         console.error('Upload error:', err);
       },
     });

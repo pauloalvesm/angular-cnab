@@ -1,0 +1,11 @@
+<div *ngIf="alert$ | async as alert"
+     class="alert-container position-fixed top-0 end-0 p-3"
+     style="z-index: 9999">
+  <div [class]="'alert alert-' + alert.type + ' alert-dismissible fade show shadow-lg border-0'" role="alert">
+    <div class="d-flex align-items-center">
+      <i [class]="getIcon(alert.type) + ' me-2 fs-4'"></i>
+      <div>{{ alert.text }}</div>
+    </div>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+</div>

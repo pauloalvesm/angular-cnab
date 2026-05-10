@@ -5,13 +5,15 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     HeaderComponent,
     PaginationComponent,
-    FooterComponent
+    FooterComponent,
+    AlertComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { FooterComponent } from './components/footer/footer.component';
     NavbarComponent,
     HeaderComponent,
     PaginationComponent,
-    FooterComponent
+    FooterComponent,
+    AlertComponent
   ]
 })
 export class SharedModule { }

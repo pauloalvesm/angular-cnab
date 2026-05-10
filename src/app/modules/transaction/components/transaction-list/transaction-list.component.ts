@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { Transaction } from '../../../../core/models/interfaces/transaction.model';
 import { TransactionService } from '../../services/transaction/transaction.service';
 import { TransactionType } from '../../../../core/models/enums/transaction-type.enum';
@@ -6,6 +6,7 @@ import { Utility } from '../../../../shared/utils/utility';
 import { TransactionUpdateComponent } from '../transaction-update/transaction-update.component';
 import { TransactionDeleteComponent } from '../transaction-delete/transaction-delete.component';
 import { TransactionDetailsComponent } from '../transaction-details/transaction-details.component';
+import { AlertService } from '../../../../shared/services/alert/alert.service';
 
 @Component({
   selector: 'app-transaction-list',
@@ -19,6 +20,8 @@ export class TransactionListComponent implements OnInit {
   public currentPage: number = 1;
   public itemsPerPage: number = 5;
   public searchTerm: string = '';
+
+  private alertService = inject(AlertService);
 
   constructor(
     private transactionService: TransactionService,
@@ -83,6 +86,11 @@ export class TransactionListComponent implements OnInit {
       error: (err) => {
         console.error('Error fetching transactions:', err);
         this.isLoading = false;
+
+        this.alertService.showAlert(
+          'danger',
+          'Error loading transactions. Please refresh the page.'
+        );
       },
     });
   }
