@@ -10,6 +10,10 @@ import { AuthService } from '../../../modules/auth/services/auth/auth.service';
 export class NavbarComponent {
   constructor(public authService: AuthService) { }
 
+  get userEmail(): string {
+    return localStorage.getItem('userEmail') || '';
+  }
+
   get isAdmin(): boolean {
     return this.authService.isAdmin();
   }
