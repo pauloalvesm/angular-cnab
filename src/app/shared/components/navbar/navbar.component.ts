@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AuthService } from '../../../modules/auth/services/auth/auth.service';
+import { AlertService } from '../../services/alert/alert.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,6 +9,8 @@ import { AuthService } from '../../../modules/auth/services/auth/auth.service';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
+  private alertService = inject(AlertService);
+
   constructor(public authService: AuthService) { }
 
   get userEmail(): string {
@@ -19,6 +22,8 @@ export class NavbarComponent {
   }
 
   onLogout(): void {
+    this.alertService.showAlert('success', 'Logged out successfully. See you soon!');
     this.authService.logout();
   }
+
 }
